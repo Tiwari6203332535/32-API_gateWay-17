@@ -1,0 +1,23 @@
+
+spring:
+  application:
+    name: 36-API_gateWay-17
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+      routes:
+      - id: A
+        uri: lb://34-sbms-greetapi-16   # Ensure this is correct
+        predicates:
+        - Path=/greet
+      - id: B
+        uri: lb://35-SBMS_WelcomeAPI-16
+        predicates:
+            - Path=/welcome
+
+server:
+  port: 2222
